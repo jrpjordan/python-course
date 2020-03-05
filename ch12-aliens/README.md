@@ -14,3 +14,5 @@ first install pip module pygame:
 ## execute
 
     python3 alien-invasion.py
+
+## ONLY CODE FOR CHAPTER 12, CODE FOR NEXT SECTIONS NEEDS TO BE ADDED
