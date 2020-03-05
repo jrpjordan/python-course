@@ -52,8 +52,9 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """ Create a new bullet and add it to the bullet group. """
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
 
     def _update_screen(self):
         # redraw the screen during each pass trough the loop
@@ -64,12 +65,19 @@ class AlienInvasion:
         # make the most recently drawn screen visible.
         pygame.display.flip()
 
+    def _update_bullets(self):
+        self.bullets.update()
+        # Get rid of bullets that have dissapeared
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+
     def run_game(self):
         """Start main loop for the game."""
         while True:
             self._check_events()
             self.ship.update()
-            self.bullets.update()
+            self._update_bullets()
             self._update_screen()
 
 # __name__ is a special variable that
