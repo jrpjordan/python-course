@@ -26,7 +26,7 @@ with open(filename) as f:
             low = int(row[6])
         except ValueError:
             print(f"Missing data for {current_date}")
-        else:
+        else:x
             highs.append(high)
             dates.append(current_date)
             lows.append(low)
